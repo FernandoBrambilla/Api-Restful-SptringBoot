@@ -31,14 +31,17 @@ public class Instantiation implements CommandLineRunner{
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
-		User maria = new  User(null, "Maria Siva", "maria@email.com");
-		User jose = new  User(null, "José Siva", "jose@email.com");
-		User marta = new  User(null, "Marta Siva", "marta@email.com");
+		User maria = new  User(null, "Maria Silva", "maria@email.com");
+		User jose = new  User(null, "José Silva", "jose@email.com");
+		User marta = new  User(null, "Marta Sivla", "marta@email.com");
 		userRepository.saveAll(Arrays.asList(maria, jose, marta));
 		
 		Post post1 = new Post(null, sdf.parse("12/06/2023"), "Partiu Viagem!!!", "Viajando para a praia", new AuthorDto(maria));
 		Post  post2 = new Post(null, sdf.parse("12/06/2023"), "Bom dia!!!", "Que belo dia hoje", new AuthorDto(maria) );
 		postRepository.saveAll(Arrays.asList(post1, post2));
+		
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(maria);
 	}
 	
 	
