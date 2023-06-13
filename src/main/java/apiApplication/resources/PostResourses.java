@@ -1,6 +1,6 @@
 package apiApplication.resources;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,11 @@ public class PostResourses {
 	@Autowired
 	private PostService postService;
 		
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findAll(){
+		List<Post> list = postService.findAll();
+		return ResponseEntity.ok().body(list); 
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Post> findById(@PathVariable String id){ 
